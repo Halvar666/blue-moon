@@ -1,0 +1,17 @@
+Blue Moon 1.1.0b8 - pre-release
+
+Derived from: Blue Ice Reloaded 1.4.14062013
+Target platform: Pale Moon 29.3.0 - 34.*
+
+Current state:
+- pre-release build based on the last confirmed working public-test branch
+
+Included fixes:
+- updated Pale Moon install metadata and skin provider naming
+- cleaned package naming and chrome registration for the Blue Moon port
+- corrected Customize Toolbar icon handling for Bookmarks popup
+- corrected History popup icon handling using the working Aeon-style layer mapping approach
+- retained previous appmenu recolor and Pale Moon compatibility fixes
+
+Source form:
+- modified theme files are included directly in this package and can be extracted with standard ZIP-compatible tools

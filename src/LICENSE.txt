@@ -1,0 +1,21 @@
+Blue Moon 1.1.0b1
+
+This package is an unofficial Pale Moon port derived from the Firefox theme
+"Blue Ice Reloaded".
+
+Original theme credits:
+- Original theme: Murry
+- Contributor: Jivko Evgeniev
+- Pale Moon port and compatibility fixes: Halvar
+
+License basis:
+- The original AMO listing shown by the user identifies the theme as released
+  under Mozilla Public License Version 1.1 (MPL 1.1).
+- This port is distributed as a modified version under MPL 1.1.
+
+Official MPL 1.1 text:
+https://www.mozilla.org/MPL/1.1/
+
+No warranty:
+This software is provided "AS IS", without warranty of any kind, express or
+implied, to the extent permitted by the MPL 1.1.
