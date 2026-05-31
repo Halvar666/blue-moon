@@ -1,17 +1,20 @@
-Blue Moon 1.1.0b8 - pre-release
+Blue Moon 1.1.0b19 - pre-release
 
 Derived from: Blue Ice Reloaded 1.4.14062013
 Target platform: Pale Moon 29.3.0 - 34.*
 
 Current state:
-- pre-release build based on the last confirmed working public-test branch
+- pre-release build based on the confirmed b18 Windows frame fix and the b9-b11 Permissions Manager / menubar fixes
 
-Included fixes:
-- updated Pale Moon install metadata and skin provider naming
-- cleaned package naming and chrome registration for the Blue Moon port
-- corrected Customize Toolbar icon handling for Bookmarks popup
-- corrected History popup icon handling using the working Aeon-style layer mapping approach
-- retained previous appmenu recolor and Pale Moon compatibility fixes
+Changes since 1.1.0b8:
+- fixed Permissions Manager site favicon sizing so large favicons cannot expand the site list rows
+- added the current Pale Moon about:permissions stylesheet path and kept the old preferences path as a compatibility wrapper
+- fixed doubled Permissions Manager menulist dropmarkers by de-native-styling only those permission controls
+- fixed unreadable main menubar hover text on light Blue Ice hover backgrounds
+- added a frame-only Win10/Win11 compatibility layer extracted from current Pale Moon Windows theme logic
+- added Pale Moon caption-buttons.svg and assigns caption-button images to #titlebar-min, #titlebar-max, and #titlebar-close as Pale Moon does
+- restricted the old Blue Ice Aero caption-button hiding rule to Win7/8 so Win10/Win11 XUL/SVG caption buttons remain visible
+- added the missing Pale Moon web-notifications icon used by Permissions Manager
 
 Source form:
 - modified theme files are included directly in this package and can be extracted with standard ZIP-compatible tools
