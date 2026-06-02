@@ -1,3 +1,7 @@
 skin    browser         bluemoon chrome/browser/
 skin    global          bluemoon chrome/global/
 skin    mozapps         bluemoon chrome/mozapps/
+# Platform compatibility layer used for Linux dark GTK experiments.
+skin    os              bluemoon chrome/os/linux/ os=Linux
+skin    os              bluemoon chrome/os/winnt/ os=WINNT
+skin    os              bluemoon chrome/os/darwin/ os=Darwin

@@ -1,0 +1,177 @@
+
+/* Blue Moon Linux GTK chrome surface adaptation.
+ * Phase D/b27: make the main browser chrome react to dark GTK colors.
+ * Keep Blue Moon icons/sprites; override only hard-coded light surfaces.
+ */
+
+@namespace url("http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul");
+
+/* Main chrome bars: the original Blue Ice rules force light menu-hover2.png
+ * and #EDEDED backgrounds. Use GTK/system colors instead.
+ */
+#main-window #navigator-toolbox:not(:-moz-lwtheme),
+#main-window #navigator-toolbox > toolbar:not(:-moz-lwtheme),
+#main-window #navigator-toolbox[tabsontop="true"] > #toolbar-menubar:not(:-moz-lwtheme),
+#main-window #navigator-toolbox[tabsontop="false"] > #toolbar-menubar:not(:-moz-lwtheme),
+#main-window #navigator-toolbox[tabsontop="true"] > #nav-bar:not(:-moz-lwtheme),
+#main-window #navigator-toolbox[tabsontop="false"] > #nav-bar:not(:-moz-lwtheme),
+#main-window #navigator-toolbox > #PersonalToolbar:not(:-moz-lwtheme),
+#main-window #navigator-toolbox > toolbar:not(:-moz-lwtheme)#PersonalToolbar,
+#main-window #personal-bookmarks {
+  -moz-appearance: none !important;
+  background: -moz-linear-gradient(rgba(255,255,255,.08), rgba(0,0,0,.10)), -moz-Dialog !important;
+  color: -moz-DialogText !important;
+  border-color: ThreeDShadow !important;
+  text-shadow: none !important;
+}
+
+#main-window #navigator-toolbox[tabsontop="true"] > #nav-bar,
+#main-window #navigator-toolbox[tabsontop="true"]:not([customizing]) > #nav-bar[collapsed="true"] + toolbar,
+#main-window #navigator-toolbox[tabsontop="true"]:not([customizing]) > #nav-bar[collapsed="true"] + #customToolbars + #PersonalToolbar {
+  background-image: -moz-linear-gradient(rgba(255,255,255,.08), rgba(0,0,0,.10)) !important;
+  background-color: -moz-Dialog !important;
+  color: -moz-DialogText !important;
+}
+
+/* Main menubar labels. b19 forced black text for light hover backgrounds;
+ * in dark GTK it must return to system text colors.
+ */
+#main-window #main-menubar,
+#main-window #main-menubar > menu,
+#main-window #toolbar-menubar menubar > menu {
+  color: -moz-DialogText !important;
+  text-shadow: none !important;
+}
+
+#main-window #main-menubar > menu[_moz-menuactive="true"]:not([disabled="true"]),
+#main-window #main-menubar > menu[_moz-menuactive="true"][open="true"]:not([disabled="true"]) {
+  background: -moz-linear-gradient(rgba(74,160,230,.42), rgba(20,88,150,.32)), -moz-Dialog !important;
+  color: -moz-DialogText !important;
+  text-shadow: none !important;
+}
+
+/* Tab bar surface. */
+#main-window #TabsToolbar,
+#main-window #TabsToolbar:not(:-moz-lwtheme),
+#main-window #TabsToolbar[tabsontop="false"],
+#main-window #tabbrowser-tabs[tabsontop="true"] > .tabbrowser-arrowscrollbox > scrollbox:not(:-moz-lwtheme) {
+  -moz-appearance: none !important;
+  background: -moz-linear-gradient(rgba(255,255,255,.06), rgba(0,0,0,.24)), -moz-Dialog !important;
+  color: -moz-DialogText !important;
+  border-color: ThreeDShadow !important;
+  text-shadow: none !important;
+}
+
+/* Normal tabs: keep the rounded Blue Moon shape but remove fixed white/grey gradients. */
+#main-window .tabbrowser-tab:not(:-moz-lwtheme) {
+  -moz-appearance: none !important;
+  background: -moz-linear-gradient(rgba(255,255,255,.10), rgba(255,255,255,.03) 46%, rgba(0,0,0,.12)), -moz-Dialog !important;
+  border-color: ThreeDShadow !important;
+  color: -moz-DialogText !important;
+  text-shadow: none !important;
+}
+
+#main-window .tabbrowser-tab:not(:-moz-lwtheme):hover {
+  background: -moz-linear-gradient(rgba(80,170,235,.30), rgba(30,95,155,.20)), -moz-Dialog !important;
+  border-color: #4a92c5 !important;
+  color: -moz-DialogText !important;
+  text-shadow: none !important;
+}
+
+#main-window .tabbrowser-tab[selected="true"]:not(:-moz-lwtheme) {
+  background: -moz-linear-gradient(rgba(120,205,255,.44), rgba(45,135,205,.36) 48%, rgba(15,70,120,.26)), -moz-Field !important;
+  border-color: #5aa9d8 !important;
+  color: -moz-FieldText !important;
+  text-shadow: none !important;
+}
+
+#main-window .tabbrowser-tab[selected="true"]:not(:-moz-lwtheme):hover {
+  background: -moz-linear-gradient(rgba(140,215,255,.50), rgba(55,150,220,.40) 48%, rgba(20,80,135,.30)), -moz-Field !important;
+  color: -moz-FieldText !important;
+}
+
+#main-window .tabbrowser-tab .tab-text,
+#main-window .tabbrowser-tab .tab-label {
+  color: inherit !important;
+  text-shadow: none !important;
+}
+
+/* New tab/all-tabs buttons sit on the tab strip; keep icons but remove light hover pads. */
+#main-window .tabs-newtab-button,
+#main-window #TabsToolbar > #new-tab-button,
+#main-window #TabsToolbar > toolbarpaletteitem > #new-tab-button,
+#main-window #alltabs-button {
+  background-color: transparent !important;
+  color: -moz-DialogText !important;
+}
+
+#main-window .tabs-newtab-button:hover,
+#main-window #TabsToolbar > #new-tab-button:hover,
+#main-window #alltabs-button:hover {
+  background: -moz-linear-gradient(rgba(80,170,235,.28), rgba(30,95,155,.18)) !important;
+  border-radius: 8px !important;
+}
+
+/* Bookmark toolbar labels on dark GTK. */
+#main-window toolbarbutton.bookmark-item,
+#main-window .bookmark-item > .toolbarbutton-text {
+  color: -moz-DialogText !important;
+  text-shadow: none !important;
+}
+
+#main-window toolbarbutton.bookmark-item:hover,
+#main-window toolbarbutton.bookmark-item[open="true"] {
+  background: -moz-linear-gradient(rgba(80,170,235,.28), rgba(30,95,155,.18)) !important;
+  color: -moz-DialogText !important;
+}
+
+/* b28 global browser-chrome readability pass.
+ * Some browser content rules hard-code toolbarbutton label colors after the
+ * theme sheets load. Use !important and high-enough chrome specificity, but
+ * keep this color-only so geometry and sprites stay untouched.
+ */
+#main-window,
+#main-window #navigator-toolbox,
+#main-window #browser-panel,
+#main-window toolbox,
+#main-window toolbar,
+#main-window toolbarbutton,
+#main-window button,
+#main-window menubar,
+#main-window menu,
+#main-window menuitem,
+#main-window label,
+#main-window description,
+#main-window .toolbarbutton-text,
+#main-window .toolbarbutton-multiline-text,
+#main-window .button-text,
+#main-window .menu-text,
+#main-window .menu-iconic-text {
+  color: -moz-DialogText !important;
+  text-shadow: none !important;
+}
+
+#main-window toolbarbutton[disabled="true"],
+#main-window toolbarbutton[disabled="true"] > .toolbarbutton-text,
+#main-window toolbarbutton[disabled="true"] > .toolbarbutton-multiline-text,
+#main-window button[disabled="true"],
+#main-window button[disabled="true"] .button-text,
+#main-window menu[disabled="true"],
+#main-window menuitem[disabled="true"],
+#main-window label[disabled="true"],
+#main-window description[disabled="true"] {
+  color: GrayText !important;
+  text-shadow: none !important;
+}
+
+/* App-menu toolbar button: the label is affected by a browser/content rule.
+ * Do not style it separately; just force it into the same corrected chrome
+ * text path as other toolbarbutton labels.
+ */
+#main-window #appmenu-toolbar-button,
+#main-window #appmenu-toolbar-button > .toolbarbutton-text,
+#main-window #appmenu-toolbar-button > .toolbarbutton-multiline-text,
+#main-window #appmenu-toolbar-button > .toolbarbutton-menu-dropmarker {
+  color: -moz-DialogText !important;
+  text-shadow: none !important;
+}

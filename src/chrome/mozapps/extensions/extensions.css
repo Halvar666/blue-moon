@@ -37,6 +37,11 @@
 
 @import url("chrome://global/skin/inContentUI.css");
 
+/* Blue Moon platform-specific Add-ons Manager overrides.
+ * Keep this @import before @namespace/style rules; Gecko ignores late @import.
+ */
+@import url("chrome://os/skin/mozapps/extensions/extensions.css");
+
 @namespace url("http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul");
 
  #addons-page {
@@ -1223,3 +1228,4 @@ button.button-link:not([disabled="true"]):active:hover {
 }
 /***Theme-extension icon opacity***/
 .addon[active="false"] .icon {opacity:0.3}
+

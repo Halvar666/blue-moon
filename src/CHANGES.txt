@@ -1,20 +1,83 @@
-Blue Moon 1.1.0b19 - pre-release
+Blue Moon 1.1.0b29 - dark GTK global add-on windows pass
 
 Derived from: Blue Ice Reloaded 1.4.14062013
 Target platform: Pale Moon 29.3.0 - 34.*
 
 Current state:
-- pre-release build based on the confirmed b18 Windows frame fix and the b9-b11 Permissions Manager / menubar fixes
+- Phase D global add-on/tool window surface build based on 1.1.0b28
+- Linux-only chrome surface layer extended beyond browser-specific windows
+- intended first visible target: DOM Inspector and similar legacy XUL add-on windows
 
-Changes since 1.1.0b8:
-- fixed Permissions Manager site favicon sizing so large favicons cannot expand the site list rows
-- added the current Pale Moon about:permissions stylesheet path and kept the old preferences path as a compatibility wrapper
-- fixed doubled Permissions Manager menulist dropmarkers by de-native-styling only those permission controls
-- fixed unreadable main menubar hover text on light Blue Ice hover backgrounds
-- added a frame-only Win10/Win11 compatibility layer extracted from current Pale Moon Windows theme logic
-- added Pale Moon caption-buttons.svg and assigns caption-button images to #titlebar-min, #titlebar-max, and #titlebar-close as Pale Moon does
-- restricted the old Blue Ice Aero caption-button hiding rule to Win7/8 so Win10/Win11 XUL/SVG caption buttons remain visible
-- added the missing Pale Moon web-notifications icon used by Permissions Manager
+Changes since 1.1.0b28:
+- extended chrome/os/linux/global/global.css from text-only readability to global add-on window surfaces
+- made generic XUL window/page/dialog/toolbox/toolbar/menubar/statusbar surfaces use dark GTK/system colors
+- added generic menubar/menu hover readability rules for add-on windows
+- added popup/menu color rules using Menu/MenuText and hover system colors
+- added textbox/listbox/richlistbox/tree field colors for legacy XUL windows
+- added selected row colors for tree/list widgets
+- kept the change Linux-only and surface/color-only: no geometry, icon, sprite or Windows frame changes
+- added DARK_GTK_PHASE_D_GLOBAL_ADDON_WINDOWS.md
+- updated release metadata to version 1.1.0b29
 
 Source form:
-- modified theme files are included directly in this package and can be extracted with standard ZIP-compatible tools
+- modified theme files and Phase D documentation are included directly in this package and can be extracted with standard ZIP-compatible tools
+
+Blue Moon 1.1.0b27 - dark GTK Phase D browser chrome pass
+
+Derived from: Blue Ice Reloaded 1.4.14062013
+Target platform: Pale Moon 29.3.0 - 34.*
+
+Changes since 1.1.0b26:
+- added Linux-only browser chrome dark GTK override
+- imported chrome://os/skin/browser/browser.css from the real loaded browser stylesheet
+- made nav-bar, personal toolbar and main menubar use GTK/system colors instead of fixed light Blue Ice backgrounds
+- made tab bar and tabs use GTK/system colors with Blue Moon blue hover/selected accents
+- restored menubar hover text to system text colors on dark GTK
+- kept toolbar sprites, icons, Windows frame fixes and Add-ons Manager b26 logic unchanged
+- updated release metadata to version 1.1.0b27
+
+Source form:
+- modified theme files and dark GTK planning notes are included directly in this package and can be extracted with standard ZIP-compatible tools
+
+Blue Moon 1.1.0b26 - dark GTK Phase D import-order fix
+
+Derived from: Blue Ice Reloaded 1.4.14062013
+Target platform: Pale Moon 29.3.0 - 34.*
+
+Current state:
+- Phase D Add-ons Manager build based on 1.1.0b25
+- no new visual rules were added; this build only fixes the CSS loading order
+
+Changes since 1.1.0b25:
+- moved the platform-specific Add-ons Manager `@import` near the top of `chrome/mozapps/extensions/extensions.css`
+- fixed the b25 issue where the Linux dark override could be ignored because `@import` was appended after normal style rules
+- preserved the b25 Linux override file and dark assets unchanged
+- updated release metadata to version 1.1.0b26
+
+Source form:
+- modified theme files and the Phase A/B/C/D planning documents are included directly in this package and can be extracted with standard ZIP-compatible tools
+
+Blue Moon 1.1.0b28 - dark GTK global text readability build
+
+Derived from: Blue Ice Reloaded 1.4.14062013
+Target platform: Pale Moon 29.3.0 - 34.*
+
+Current state:
+- Phase D text/readability build based on 1.1.0b27
+- Linux-only global chrome text layer added for dark GTK readability
+- b20/b21 Linux GTK experiments remain abandoned and are not used as the base
+
+Changes since 1.1.0b27:
+- added Linux-only global text readability layer:
+  - chrome/os/linux/global/global.css
+- added safe no-op global placeholders for non-Linux platforms:
+  - chrome/os/winnt/global/global.css
+  - chrome/os/darwin/global/global.css
+- imported chrome://os/skin/global/global.css from chrome/global/global.css before @namespace
+- strengthened browser chrome label inheritance in chrome/os/linux/browser/browser.css
+- fixed dark-on-dark App Menu toolbar button text through the global toolbarbutton text path
+- kept the fix color-only: no toolbar geometry, icon, sprite or Windows frame changes
+- updated release metadata to version 1.1.0b28
+
+Source form:
+- modified theme files and Phase D documentation are included directly in this package and can be extracted with standard ZIP-compatible tools

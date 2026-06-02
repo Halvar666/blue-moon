@@ -1,0 +1,253 @@
+/* Blue Moon Linux GTK global text readability layer.
+ * b28: keep chrome labels readable on dark GTK after hard-coded
+ * old Firefox/Blue Ice text rules from content or widget CSS.
+ */
+
+@namespace url("http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul");
+
+/* Generic chrome text. This intentionally lives in the platform
+ * layer so Windows/macOS and the confirmed Windows frame fix are
+ * not touched. The rules are color-only: no widget geometry, no
+ * sprite/icon changes.
+ */
+window,
+page,
+dialog,
+wizard,
+prefwindow,
+toolbox,
+toolbar,
+toolbarpaletteitem,
+toolbarbutton,
+button,
+menubar,
+menu,
+menuitem,
+label,
+description,
+caption,
+checkbox,
+radio,
+groupbox,
+tab,
+.text-link,
+.toolbarbutton-text,
+.toolbarbutton-multiline-text,
+.button-text,
+.menu-text,
+.menu-iconic-text {
+  color: -moz-DialogText !important;
+  text-shadow: none !important;
+}
+
+toolbarbutton[disabled="true"],
+toolbarbutton[disabled="true"] > .toolbarbutton-text,
+toolbarbutton[disabled="true"] > .toolbarbutton-multiline-text,
+button[disabled="true"],
+button[disabled="true"] .button-text,
+menu[disabled="true"],
+menuitem[disabled="true"],
+menu[disabled="true"] > .menu-text,
+menuitem[disabled="true"] > .menu-text,
+label[disabled="true"],
+description[disabled="true"],
+checkbox[disabled="true"],
+radio[disabled="true"],
+tab[disabled="true"] {
+  color: GrayText !important;
+  text-shadow: none !important;
+}
+
+/* Toolbar buttons often inherit old fixed black labels from
+ * chrome://browser/content/browser.css. Force label inheritance
+ * from the corrected toolbarbutton color.
+ */
+toolbarbutton > .toolbarbutton-text,
+toolbarbutton > .toolbarbutton-multiline-text,
+toolbarbutton > .toolbarbutton-menu-dropmarker,
+button > .button-box > .button-text,
+.button-box,
+.toolbarbutton-menubutton-button,
+.toolbarbutton-menubutton-dropmarker {
+  color: inherit !important;
+  text-shadow: none !important;
+}
+
+/* b29 global add-on/window surface pass.
+ * Dark GTK needs not only readable text, but also dark chrome surfaces in
+ * add-on/tool windows such as DOM Inspector.  Keep this platform-only and
+ * surface-oriented: no widget geometry and no icon/sprite changes.
+ */
+window,
+page,
+dialog,
+wizard,
+prefwindow {
+  -moz-appearance: none !important;
+  background-color: -moz-Dialog !important;
+  color: -moz-DialogText !important;
+}
+
+toolbox,
+toolbar,
+menubar,
+statusbar,
+statusbarpanel,
+notificationbox,
+notification,
+caption,
+groupbox,
+tabbox,
+tabpanels,
+deck,
+panel,
+resizer,
+separator,
+splitter {
+  color: -moz-DialogText !important;
+  text-shadow: none !important;
+  border-color: ThreeDShadow !important;
+}
+
+/* Generic chrome bars in extension windows. DOM Inspector and many legacy
+ * add-ons use plain toolbox/toolbar/menubar widgets rather than browser IDs.
+ */
+toolbox,
+toolbar,
+menubar,
+statusbar,
+statusbarpanel {
+  -moz-appearance: none !important;
+  background: -moz-linear-gradient(rgba(255,255,255,.06), rgba(0,0,0,.12)),
+              -moz-Dialog !important;
+}
+
+/* Menubar/menu hover on dark GTK.  This complements the browser-specific
+ * menubar fix and covers add-on windows without naming them individually.
+ */
+menubar > menu,
+toolbar menubar > menu {
+  color: -moz-DialogText !important;
+  text-shadow: none !important;
+}
+
+menubar > menu[_moz-menuactive="true"]:not([disabled="true"]),
+menubar > menu[_moz-menuactive="true"][open="true"]:not([disabled="true"]),
+toolbar menubar > menu[_moz-menuactive="true"]:not([disabled="true"]),
+toolbar menubar > menu[_moz-menuactive="true"][open="true"]:not([disabled="true"]) {
+  background: -moz-linear-gradient(rgba(74,160,230,.42), rgba(20,88,150,.32)),
+              -moz-Dialog !important;
+  color: -moz-DialogText !important;
+  text-shadow: none !important;
+}
+
+/* Popup menus and their labels. */
+menupopup,
+popup,
+panel[type="autocomplete"],
+tooltip {
+  -moz-appearance: none !important;
+  background-color: Menu !important;
+  color: MenuText !important;
+  border-color: ThreeDShadow !important;
+}
+
+menuitem,
+menupopup > menu,
+menupopup > menuitem,
+.menu-text,
+.menu-iconic-text {
+  color: MenuText !important;
+  text-shadow: none !important;
+}
+
+menupopup > menu[_moz-menuactive="true"],
+menupopup > menuitem[_moz-menuactive="true"],
+menupopup > menuitem:hover,
+menupopup > menu:hover {
+  background-color: -moz-menuhover !important;
+  color: -moz-menuhovertext !important;
+  text-shadow: none !important;
+}
+
+/* Form/list/data widgets in legacy XUL add-on windows. */
+textbox,
+searchbox,
+menulist,
+listbox,
+richlistbox,
+tree,
+treechildren,
+listheader,
+treecols,
+treecol,
+columnpicker,
+#urlbar,
+.searchbar-textbox {
+  color: -moz-FieldText !important;
+  background-color: -moz-Field !important;
+  border-color: ThreeDShadow !important;
+  text-shadow: none !important;
+}
+
+textbox[readonly="true"],
+textbox[readonly],
+textbox[disabled="true"],
+textbox[disabled] {
+  color: GrayText !important;
+  background-color: -moz-Dialog !important;
+}
+
+/* Tree/list rows and headers.  Avoid changing geometry; only colors. */
+treechildren::-moz-tree-row,
+treechildren::-moz-tree-cell,
+treechildren::-moz-tree-column,
+treechildren::-moz-tree-separator {
+  background-color: transparent !important;
+  border-color: ThreeDShadow !important;
+}
+
+treechildren::-moz-tree-cell-text,
+treechildren::-moz-tree-cell-text(hover),
+treechildren::-moz-tree-cell-text(selected),
+treechildren::-moz-tree-cell-text(focus) {
+  color: -moz-FieldText !important;
+  text-shadow: none !important;
+}
+
+treechildren::-moz-tree-row(selected),
+treechildren::-moz-tree-row(selected, focus),
+treechildren::-moz-tree-row(hover) {
+  background-color: -moz-cellhighlight !important;
+}
+
+treechildren::-moz-tree-cell-text(selected),
+treechildren::-moz-tree-cell-text(selected, focus) {
+  color: -moz-cellhighlighttext !important;
+}
+
+.listcell-label,
+listitem,
+richlistitem,
+row,
+caption > label,
+groupbox > caption,
+groupbox > caption > label {
+  color: -moz-DialogText !important;
+  text-shadow: none !important;
+}
+
+richlistitem[selected="true"],
+richlistitem[selected],
+listitem[selected="true"],
+listitem[selected] {
+  background-color: -moz-cellhighlight !important;
+  color: -moz-cellhighlighttext !important;
+}
+
+richlistitem[selected="true"] label,
+richlistitem[selected] label,
+listitem[selected="true"] label,
+listitem[selected] label {
+  color: -moz-cellhighlighttext !important;
+}

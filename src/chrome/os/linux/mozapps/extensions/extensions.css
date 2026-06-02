@@ -1,0 +1,206 @@
+/* Blue Moon Linux dark GTK Phase D Add-ons Manager implementation.
+ *
+ * This is intentionally targeted at the old hard-coded Blue Ice / Blue Moon
+ * Add-ons Manager surfaces.  F2M-style GTK/system colors can adapt many XUL
+ * controls, but the large Blue Moon bitmap background and light overlay need
+ * a real dark identity asset instead of a generic flat GTK surface.
+ *
+ * Phase D scope: Add-ons Manager only.  Browser toolbar, tabs, icons and the
+ * confirmed b18/b19 Windows frame fix are not touched here.
+ */
+
+@namespace url("http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul");
+
+#addons-page {
+  background-color: #06111b !important;
+  background-image: url("chrome://browser/skin/newtab/ice-dark.png") !important;
+  background-attachment: fixed !important;
+  color: #d9ecff !important;
+}
+
+#view-port-container {
+  background-color: rgba(4, 16, 28, 0.68) !important;
+  background-image: url("chrome://browser/skin/newtab/transdark.png") !important;
+  border-color: #386b99 !important;
+  box-shadow: 0 0 14px rgba(0, 0, 0, 0.45) inset,
+              0 0 8px rgba(110, 190, 255, 0.18) !important;
+}
+
+#view-port,
+.view-pane,
+.list,
+#list-view,
+#detail-view,
+#search-view,
+#updates-view,
+#discover-view {
+  background-color: transparent !important;
+  color: #d9ecff !important;
+}
+
+#addons-page .global-info-container,
+.view-header,
+#search-filter,
+#detail-contributions,
+.alert {
+  background-color: rgba(6, 24, 42, 0.72) !important;
+  background-image: -moz-linear-gradient(rgba(34, 89, 132, 0.72),
+                                         rgba(6, 30, 52, 0.82)) !important;
+  color: #e5f4ff !important;
+  border-color: #315f88 !important;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.45) inset !important;
+}
+
+#detail-contrib-description,
+#detail-contrib-suggested,
+#search-filter-label,
+.description,
+.creator,
+.details,
+#detail-desc,
+#detail-fulldesc,
+.preferences-description,
+.detail-row,
+.detail-row-complex,
+setting {
+  color: #d5eaff !important;
+}
+
+.name-container,
+.addon-view[active="false"],
+.addon-view[active="false"] .name-container,
+.addon[active="false"][selected] .name-container {
+  color: #f2fbff !important;
+}
+
+button.button-link,
+.text-link,
+.creator .text-link {
+  color: #8bd4ff !important;
+}
+
+button.button-link:hover,
+.text-link:hover {
+  color: #c4ebff !important;
+}
+
+.category {
+  border-color: #1b5c8b !important;
+  background-color: rgba(8, 54, 92, 0.82) !important;
+  background-image: -moz-linear-gradient(rgba(70, 156, 220, 0.72),
+                                         rgba(24, 106, 173, 0.82) 48%,
+                                         rgba(6, 58, 102, 0.90)) !important;
+  color: #edf8ff !important;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.65) !important;
+}
+
+.category:hover,
+.category[selected],
+.category[selected="true"] {
+  border-color: #7fcfff !important;
+  background-color: rgba(12, 70, 116, 0.90) !important;
+  background-image: -moz-linear-gradient(rgba(151, 218, 255, 0.68),
+                                         rgba(54, 147, 220, 0.82) 46%,
+                                         rgba(13, 78, 132, 0.94)) !important;
+  color: #ffffff !important;
+}
+
+.category-badge {
+  background-color: #1776b7 !important;
+  color: #ffffff !important;
+}
+
+.addon {
+  color: #e5f4ff !important;
+  border-color: #2f6e9f !important;
+  background-color: rgba(6, 28, 49, 0.82) !important;
+  background-image: -moz-linear-gradient(rgba(51, 139, 207, 0.62),
+                                         rgba(19, 83, 135, 0.82) 48%,
+                                         rgba(5, 34, 62, 0.90)) !important;
+  box-shadow: 0 0 5px 1px rgba(91, 171, 230, 0.28) inset,
+              0 0 0 1px rgba(0, 0, 0, 0.55),
+              0 1px 5px rgba(0, 0, 0, 0.65) !important;
+}
+
+.addon[active="false"] {
+  color: #d7eaff !important;
+  border-color: #1a5787 !important;
+  background-color: rgba(5, 35, 64, 0.80) !important;
+  background-image: -moz-linear-gradient(rgba(35, 118, 184, 0.58),
+                                         rgba(10, 70, 121, 0.80) 48%,
+                                         rgba(4, 33, 61, 0.90)) !important;
+}
+
+.addon:hover,
+.addon[active="false"]:hover,
+.addon[selected],
+.addon[active="false"][selected="true"],
+.addon[active="false"][selected] {
+  color: #ffffff !important;
+  border-color: #78caff !important;
+  background-color: rgba(8, 59, 100, 0.92) !important;
+  background-image: -moz-linear-gradient(rgba(127, 208, 255, 0.62),
+                                         rgba(31, 124, 200, 0.88) 45%,
+                                         rgba(6, 63, 111, 0.96)) !important;
+  box-shadow: 0 0 7px 1px rgba(130, 210, 255, 0.35) inset,
+              0 0 0 1px rgba(0, 0, 0, 0.68),
+              0 1px 6px rgba(0, 0, 0, 0.75) !important;
+}
+
+.addon[status="uninstalled"] > .container {
+  background-color: rgba(81, 72, 11, 0.86) !important;
+  color: #fff5aa !important;
+}
+
+.addon-view .warning,
+.global-warning {
+  color: #ffe08a !important;
+}
+
+.addon-view .error {
+  color: #ffb7b7 !important;
+}
+
+.addon-view .pending,
+#updates-installed,
+#updates-downloaded {
+  color: #9cffb1 !important;
+}
+
+#detail-screenshot[loading],
+#detail-screenshot[loading="error"],
+.download-progress,
+.header-button {
+  background-color: rgba(8, 31, 53, 0.78) !important;
+  background-image: -moz-linear-gradient(rgba(72, 120, 157, 0.45),
+                                         rgba(11, 43, 72, 0.75)) !important;
+  color: #e6f5ff !important;
+  text-shadow: none !important;
+  border-color: #3d719b !important;
+}
+
+.header-button:not([disabled="true"]):active:hover,
+.header-button[open="true"] {
+  background-color: rgba(20, 76, 119, 0.88) !important;
+}
+
+.download-progress .status {
+  text-shadow: none !important;
+  color: #e6f5ff !important;
+}
+
+.download-progress .cancel {
+  background-color: rgba(20, 54, 80, 0.82) !important;
+  border-color: #5c91b8 !important;
+}
+
+.sorter {
+  color: #b8dfff !important;
+}
+
+.sorter[checkState="1"],
+.sorter[checkState="2"],
+.search-filter-radio[selected] {
+  background-color: rgba(54, 122, 170, 0.58) !important;
+  color: #ffffff !important;
+}
