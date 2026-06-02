@@ -106,7 +106,6 @@ separator,
 splitter {
   color: -moz-DialogText !important;
   text-shadow: none !important;
-  border-color: ThreeDShadow !important;
 }
 
 /* Generic chrome bars in extension windows. DOM Inspector and many legacy
@@ -149,7 +148,6 @@ tooltip {
   -moz-appearance: none !important;
   background-color: Menu !important;
   color: MenuText !important;
-  border-color: ThreeDShadow !important;
 }
 
 menuitem,
@@ -186,7 +184,6 @@ columnpicker,
 .searchbar-textbox {
   color: -moz-FieldText !important;
   background-color: -moz-Field !important;
-  border-color: ThreeDShadow !important;
   text-shadow: none !important;
 }
 
@@ -204,7 +201,6 @@ treechildren::-moz-tree-cell,
 treechildren::-moz-tree-column,
 treechildren::-moz-tree-separator {
   background-color: transparent !important;
-  border-color: ThreeDShadow !important;
 }
 
 treechildren::-moz-tree-cell-text,
@@ -250,4 +246,18 @@ richlistitem[selected] label,
 listitem[selected="true"] label,
 listitem[selected] label {
   color: -moz-cellhighlighttext !important;
+}
+
+/* b30: Keep legacy bookmark/sidebar trees compact.  The global dark-window
+ * pass must not introduce visible row separators or extra-looking spacing in
+ * tree/list views when returning to a light GTK theme.
+ */
+treechildren::-moz-tree-row,
+treechildren::-moz-tree-cell,
+treechildren::-moz-tree-separator {
+  border: none !important;
+}
+
+treechildren::-moz-tree-row {
+  min-height: 0 !important;
 }

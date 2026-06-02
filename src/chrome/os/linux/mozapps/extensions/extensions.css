@@ -1,29 +1,35 @@
-/* Blue Moon Linux dark GTK Phase D Add-ons Manager implementation.
+/* Blue Moon Linux dark-theme Phase F adaptive Add-ons Manager background.
  *
- * This is intentionally targeted at the old hard-coded Blue Ice / Blue Moon
- * Add-ons Manager surfaces.  F2M-style GTK/system colors can adapt many XUL
- * controls, but the large Blue Moon bitmap background and light overlay need
- * a real dark identity asset instead of a generic flat GTK surface.
+ * b30 proved that `@media (-moz-dark-theme)` is not automatically tied to the
+ * active GTK theme in Pale Moon/UXP; it follows browser prefs such as
+ * `ui.color_scheme`.  Therefore a GTK-only theme switch can leave the image
+ * path in the wrong state.  This layer avoids hard light/dark image switching
+ * and instead lets GTK/system colors participate directly.
  *
- * Phase D scope: Add-ons Manager only.  Browser toolbar, tabs, icons and the
- * confirmed b18/b19 Windows frame fix are not touched here.
+ * Strategy:
+ * - keep the original Blue Moon identity image (`ice.png`) as the visible base;
+ * - blend it with `-moz-Dialog`, so it stays light on light GTK and darkens on
+ *   dark GTK without a separate selector;
+ * - keep the new dark image assets in the package for future/manual variants,
+ *   but do not depend on `-moz-dark-theme` for automatic GTK switching;
+ * - avoid sidebar/tree geometry changes.
  */
 
 @namespace url("http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul");
 
 #addons-page {
-  background-color: #06111b !important;
-  background-image: url("chrome://browser/skin/newtab/ice-dark.png") !important;
+  background-color: -moz-Dialog !important;
+  background-image: url("chrome://browser/skin/newtab/ice.png") !important;
   background-attachment: fixed !important;
-  color: #d9ecff !important;
+  background-blend-mode: multiply !important;
+  color: -moz-DialogText !important;
 }
 
 #view-port-container {
-  background-color: rgba(4, 16, 28, 0.68) !important;
-  background-image: url("chrome://browser/skin/newtab/transdark.png") !important;
-  border-color: #386b99 !important;
-  box-shadow: 0 0 14px rgba(0, 0, 0, 0.45) inset,
-              0 0 8px rgba(110, 190, 255, 0.18) !important;
+  background-color: rgba(0, 0, 0, 0.10) !important;
+  background-image: none !important;
+  border-color: rgba(90, 170, 230, 0.45) !important;
+  color: -moz-DialogText !important;
 }
 
 #view-port,
@@ -35,7 +41,7 @@
 #updates-view,
 #discover-view {
   background-color: transparent !important;
-  color: #d9ecff !important;
+  color: -moz-DialogText !important;
 }
 
 #addons-page .global-info-container,
@@ -43,12 +49,12 @@
 #search-filter,
 #detail-contributions,
 .alert {
-  background-color: rgba(6, 24, 42, 0.72) !important;
-  background-image: -moz-linear-gradient(rgba(34, 89, 132, 0.72),
-                                         rgba(6, 30, 52, 0.82)) !important;
-  color: #e5f4ff !important;
-  border-color: #315f88 !important;
-  box-shadow: 0 0 4px rgba(0, 0, 0, 0.45) inset !important;
+  background-color: -moz-Dialog !important;
+  background-image: -moz-linear-gradient(rgba(120, 190, 245, 0.22),
+                                         rgba(20, 95, 160, 0.18)) !important;
+  color: -moz-DialogText !important;
+  border-color: rgba(88, 160, 220, 0.42) !important;
+  text-shadow: none !important;
 }
 
 #detail-contrib-description,
@@ -62,47 +68,47 @@
 .preferences-description,
 .detail-row,
 .detail-row-complex,
-setting {
-  color: #d5eaff !important;
-}
-
+setting,
 .name-container,
 .addon-view[active="false"],
 .addon-view[active="false"] .name-container,
 .addon[active="false"][selected] .name-container {
-  color: #f2fbff !important;
+  color: -moz-DialogText !important;
+  text-shadow: none !important;
 }
 
 button.button-link,
 .text-link,
 .creator .text-link {
-  color: #8bd4ff !important;
+  color: #54bdf7 !important;
+  text-shadow: none !important;
 }
 
 button.button-link:hover,
 .text-link:hover {
-  color: #c4ebff !important;
+  color: #88d8ff !important;
 }
 
 .category {
-  border-color: #1b5c8b !important;
-  background-color: rgba(8, 54, 92, 0.82) !important;
-  background-image: -moz-linear-gradient(rgba(70, 156, 220, 0.72),
-                                         rgba(24, 106, 173, 0.82) 48%,
-                                         rgba(6, 58, 102, 0.90)) !important;
-  color: #edf8ff !important;
-  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.65) !important;
+  border-color: rgba(41, 115, 175, 0.65) !important;
+  background-color: -moz-Dialog !important;
+  background-image: -moz-linear-gradient(rgba(118, 204, 255, 0.42),
+                                         rgba(41, 139, 210, 0.34) 48%,
+                                         rgba(9, 78, 135, 0.34)) !important;
+  color: -moz-DialogText !important;
+  text-shadow: none !important;
 }
 
 .category:hover,
 .category[selected],
 .category[selected="true"] {
-  border-color: #7fcfff !important;
-  background-color: rgba(12, 70, 116, 0.90) !important;
-  background-image: -moz-linear-gradient(rgba(151, 218, 255, 0.68),
-                                         rgba(54, 147, 220, 0.82) 46%,
-                                         rgba(13, 78, 132, 0.94)) !important;
-  color: #ffffff !important;
+  border-color: rgba(132, 211, 255, 0.85) !important;
+  background-color: -moz-cellhighlight !important;
+  background-image: -moz-linear-gradient(rgba(162, 226, 255, 0.54),
+                                         rgba(64, 161, 230, 0.48) 46%,
+                                         rgba(18, 95, 154, 0.50)) !important;
+  color: -moz-cellhighlighttext !important;
+  text-shadow: none !important;
 }
 
 .category-badge {
@@ -111,24 +117,23 @@ button.button-link:hover,
 }
 
 .addon {
-  color: #e5f4ff !important;
-  border-color: #2f6e9f !important;
-  background-color: rgba(6, 28, 49, 0.82) !important;
-  background-image: -moz-linear-gradient(rgba(51, 139, 207, 0.62),
-                                         rgba(19, 83, 135, 0.82) 48%,
-                                         rgba(5, 34, 62, 0.90)) !important;
-  box-shadow: 0 0 5px 1px rgba(91, 171, 230, 0.28) inset,
-              0 0 0 1px rgba(0, 0, 0, 0.55),
-              0 1px 5px rgba(0, 0, 0, 0.65) !important;
+  color: -moz-DialogText !important;
+  border-color: rgba(47, 120, 180, 0.72) !important;
+  background-color: -moz-Dialog !important;
+  background-image: -moz-linear-gradient(rgba(92, 179, 240, 0.34),
+                                         rgba(31, 112, 178, 0.32) 48%,
+                                         rgba(4, 58, 105, 0.34)) !important;
+  text-shadow: none !important;
+  box-shadow: 0 0 4px rgba(91, 171, 230, 0.22) inset,
+              0 0 0 1px rgba(0, 0, 0, 0.20) !important;
 }
 
 .addon[active="false"] {
-  color: #d7eaff !important;
-  border-color: #1a5787 !important;
-  background-color: rgba(5, 35, 64, 0.80) !important;
-  background-image: -moz-linear-gradient(rgba(35, 118, 184, 0.58),
-                                         rgba(10, 70, 121, 0.80) 48%,
-                                         rgba(4, 33, 61, 0.90)) !important;
+  color: -moz-DialogText !important;
+  border-color: rgba(36, 99, 154, 0.70) !important;
+  background-image: -moz-linear-gradient(rgba(64, 148, 215, 0.30),
+                                         rgba(18, 93, 154, 0.30) 48%,
+                                         rgba(4, 56, 101, 0.32)) !important;
 }
 
 .addon:hover,
@@ -136,71 +141,72 @@ button.button-link:hover,
 .addon[selected],
 .addon[active="false"][selected="true"],
 .addon[active="false"][selected] {
-  color: #ffffff !important;
-  border-color: #78caff !important;
-  background-color: rgba(8, 59, 100, 0.92) !important;
-  background-image: -moz-linear-gradient(rgba(127, 208, 255, 0.62),
-                                         rgba(31, 124, 200, 0.88) 45%,
-                                         rgba(6, 63, 111, 0.96)) !important;
-  box-shadow: 0 0 7px 1px rgba(130, 210, 255, 0.35) inset,
-              0 0 0 1px rgba(0, 0, 0, 0.68),
-              0 1px 6px rgba(0, 0, 0, 0.75) !important;
+  color: -moz-cellhighlighttext !important;
+  border-color: rgba(120, 202, 255, 0.88) !important;
+  background-color: -moz-cellhighlight !important;
+  background-image: -moz-linear-gradient(rgba(150, 222, 255, 0.50),
+                                         rgba(48, 145, 220, 0.46) 45%,
+                                         rgba(10, 84, 145, 0.52)) !important;
+  text-shadow: none !important;
+  box-shadow: 0 0 6px rgba(130, 210, 255, 0.30) inset,
+              0 0 0 1px rgba(0, 0, 0, 0.28) !important;
 }
 
 .addon[status="uninstalled"] > .container {
-  background-color: rgba(81, 72, 11, 0.86) !important;
-  color: #fff5aa !important;
+  background-color: rgba(122, 112, 18, 0.26) !important;
+  color: -moz-DialogText !important;
 }
 
 .addon-view .warning,
 .global-warning {
-  color: #ffe08a !important;
+  color: #d9a000 !important;
 }
 
 .addon-view .error {
-  color: #ffb7b7 !important;
+  color: #d25b5b !important;
 }
 
 .addon-view .pending,
 #updates-installed,
 #updates-downloaded {
-  color: #9cffb1 !important;
+  color: #3ea35a !important;
 }
 
 #detail-screenshot[loading],
 #detail-screenshot[loading="error"],
 .download-progress,
 .header-button {
-  background-color: rgba(8, 31, 53, 0.78) !important;
-  background-image: -moz-linear-gradient(rgba(72, 120, 157, 0.45),
-                                         rgba(11, 43, 72, 0.75)) !important;
-  color: #e6f5ff !important;
+  background-color: -moz-Dialog !important;
+  background-image: -moz-linear-gradient(rgba(100, 165, 215, 0.22),
+                                         rgba(20, 95, 150, 0.20)) !important;
+  color: -moz-DialogText !important;
   text-shadow: none !important;
-  border-color: #3d719b !important;
+  border-color: rgba(70, 140, 200, 0.48) !important;
 }
 
 .header-button:not([disabled="true"]):active:hover,
 .header-button[open="true"] {
-  background-color: rgba(20, 76, 119, 0.88) !important;
+  background-color: -moz-cellhighlight !important;
+  color: -moz-cellhighlighttext !important;
 }
 
 .download-progress .status {
   text-shadow: none !important;
-  color: #e6f5ff !important;
+  color: -moz-DialogText !important;
 }
 
 .download-progress .cancel {
-  background-color: rgba(20, 54, 80, 0.82) !important;
-  border-color: #5c91b8 !important;
+  background-color: -moz-Dialog !important;
+  border-color: rgba(92, 145, 184, 0.55) !important;
 }
 
 .sorter {
-  color: #b8dfff !important;
+  color: -moz-DialogText !important;
 }
 
 .sorter[checkState="1"],
 .sorter[checkState="2"],
 .search-filter-radio[selected] {
-  background-color: rgba(54, 122, 170, 0.58) !important;
-  color: #ffffff !important;
+  background-color: -moz-cellhighlight !important;
+  color: -moz-cellhighlighttext !important;
 }
